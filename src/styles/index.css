@@ -1,0 +1,30 @@
+:root {
+  --gray-100: #ffffff;
+  --gray-200: #f2f6fb;
+  --gray-250: #EDF0F3;
+  --gray-300: #DCE4ED;
+  --gray-400: #C8D3DE;
+  --gray-500: #A0AEBC;
+  --gray-600: #7D8C9B;
+  --gray-700: #515C68;
+  --gray-800: #343F4A;
+  --gray-900: #232A30;
+  --primary-100: #5B41FF;
+}
+
+* {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--gray-700);
+  background-color: var(--gray-200);
+}
+
+#dropdown-layer {
+  position: fixed;
+  z-index: 5000;
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "2375533bfc60",
+    "name": "Feature"
+  },
+  {
+    "id": "8ca853efa283",
+    "name": "Bug"
+  },
+  {
+    "id": "6a6013f92f5fc",
+    "name": "Hotfix"
+  },
+  {
+    "id": "3c3124f64704",
+    "name": "Design"
+  },
+  {
+    "id": "3c3124f6470c",
+    "name": "Business"
+  }
+]
