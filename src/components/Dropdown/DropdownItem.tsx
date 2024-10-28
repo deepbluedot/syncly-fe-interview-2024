@@ -6,11 +6,15 @@ import Checkbox from '../CheckBox/Checkbox';
 export type OptionItem = {
   value: StringNumberValue;
   label: ReactNode;
+
+  // check가 불가능한 옵션 아이템인 경우 클릭 시 콜백
+  onClick?: (value: StringNumberValue) => void;
+
+  // check가 가능한 옵션 아이템인지 여부
   enableCheck?: {
     checked: boolean;
-    onCheck: (value: StringNumberValue, status: boolean) => void;
+    onCheck: (value: StringNumberValue, status: boolean) => void; // check시 실행할 콜백
   };
-  onClick?: (value: StringNumberValue) => void;
 };
 
 const DropdownItem = (props: OptionItem) => {
