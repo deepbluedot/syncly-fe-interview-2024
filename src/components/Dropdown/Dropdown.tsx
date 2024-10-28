@@ -6,12 +6,12 @@ import DropdownPortal from '../Portal/DropdownPortal';
 import DropdownItem, { OptionItem } from './DropdownItem';
 
 type Props = {
-  options: OptionItem[];
-  status: boolean;
-  close: () => void;
-  anchorRef: RefObject<HTMLDivElement>;
-  style?: CSSProperties;
-  loading?: boolean;
+  options: OptionItem[]; // 드랍다운 컴포넌트가 렌더링하는 option의 리스트
+  status: boolean; // 드랍다운의 열림/닫힘 상태
+  close: () => void; // 드랍다운을 닫는 close callback
+  anchorRef: RefObject<HTMLDivElement>; // 드랍다운이 열릴 위치의 기준이 되는 element요소의 ref
+  style?: CSSProperties; // 드랍다운의 커스텀 스타일 (optional)
+  loading?: boolean; // 드랍다운 옵션 리스트를 불러올 경우를 위한 로딩 상태 (optional)
 };
 
 const Dropdown = (props: Props) => {

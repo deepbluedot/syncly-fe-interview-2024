@@ -2,7 +2,6 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import FeedbackList from './components/Feedback/FeedbackList';
 import FilterComponent from './components/Filter/Filter';
-import service from './service';
 import { FilterOption, FilterValue } from './types';
 
 //
@@ -25,16 +24,11 @@ import { FilterOption, FilterValue } from './types';
 // [참고사항]
 // - tag List는 service.getTagList() 함수를 통해 비동기로 api를 호출할 수 있습니다.
 // - css variables는 /src/styles/index.css 를 참고해주세요 (Figma에서 mode_swap/gray/200 === var(--gray-200))
-// - icon들은 /src/assets 경로에 정의되어 있습니다.
+// - 필요한 icon들은 /src/assets 경로에 정의되어 있습니다.
 //
 //
 
 function App() {
-  // Tag list는 다음과 같이 불러올 수 있습니다.
-  const fetchTagList = async () => {
-    const res = await service.getTagList();
-  };
-
   const filterOptions: FilterOption[] = [];
   const [currentFilterValues, setCurrentFilterValues] = useState<FilterValue[]>(
     [],
