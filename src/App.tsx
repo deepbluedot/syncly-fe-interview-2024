@@ -22,11 +22,18 @@ import { FilterOption, FilterValue } from './types';
 // - (Optional) Dropdown 컴포넌트를 검색 가능한 형태로 확장하기
 //
 // [참고사항]
-// - tag List는 service.getTagList() 함수를 통해 비동기로 api를 호출할 수 있습니다.
 // - css variables는 /src/styles/index.css 를 참고해주세요 (Figma에서 mode_swap/gray/200 === var(--gray-200))
 // - 필요한 icon들은 /src/assets 경로에 정의되어 있습니다.
 //
 //
+
+const tagList = [
+  { label: 'Feature', id: '2375533bfc60' },
+  { label: 'Bug', id: '8ca853efa283' },
+  { label: 'Hotfix', id: '6a6013f92f5fc' },
+  { label: 'Design', id: '3c3124f64704' },
+  { label: 'Business', id: '3c3124f6470c' },
+];
 
 function App() {
   const filterOptions: FilterOption[] = [];

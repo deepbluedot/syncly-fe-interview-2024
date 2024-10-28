@@ -7,11 +7,11 @@ export enum SENTIMENT {
 }
 
 export const SentimentDic = {
-  [SENTIMENT.VERY_NEGATIVE]: "Very negative",
-  [SENTIMENT.NEGATIVE]: "Negative",
-  [SENTIMENT.NEUTRAL]: "Neutral",
-  [SENTIMENT.POSITIVE]: "Positive",
-  [SENTIMENT.VERY_POSITIVE]: "Very positive",
+  [SENTIMENT.VERY_NEGATIVE]: 'Very negative',
+  [SENTIMENT.NEGATIVE]: 'Negative',
+  [SENTIMENT.NEUTRAL]: 'Neutral',
+  [SENTIMENT.POSITIVE]: 'Positive',
+  [SENTIMENT.VERY_POSITIVE]: 'Very positive',
 };
 
 export enum SOURCE {
@@ -23,14 +23,14 @@ export enum SOURCE {
 }
 
 export const SourceDic = {
-  [SOURCE.MANUAL]: "Manual",
-  [SOURCE.SLACK]: "Slack",
-  [SOURCE.INTERCOM]: "Intercom",
-  [SOURCE.ZENDESK]: "Zendesk",
-  [SOURCE.CHANNEL_TALK]: "Channel talk",
+  [SOURCE.MANUAL]: 'Manual',
+  [SOURCE.SLACK]: 'Slack',
+  [SOURCE.INTERCOM]: 'Intercom',
+  [SOURCE.ZENDESK]: 'Zendesk',
+  [SOURCE.CHANNEL_TALK]: 'Channel talk',
 };
 
 export enum FILTER_OPERATOR {
-  OR = "||",
-  AND = ",",
+  OR = '||',
+  AND = ',',
 }
