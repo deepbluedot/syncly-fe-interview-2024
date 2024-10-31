@@ -11,6 +11,7 @@ import { FilterOption, FilterValue } from './types';
 //
 // [요구사항]
 // - /types/index.ts FilterOption, FilterValue type 정의 (현재 unknown으로 정의됨)
+// - 추가적으로 필요한 타입 정의는 자유롭게 작성
 //
 // - /components/Filter/Filter.tsx 에서 필터 컴포넌트 작성
 //   - /types/constants.ts 파일을 참조하여 필터 옵션 리스트 구성 및 Operator selector 구성
