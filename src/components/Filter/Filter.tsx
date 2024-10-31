@@ -37,10 +37,18 @@ const FilterComponent = (props: Props) => {
           {
             label: 'Filter A',
             value: 1,
+            onClick(value) {
+              console.log(value);
+              // => 1
+            },
           },
           {
             label: 'Filter B',
             value: 2,
+            onClick(value) {
+              console.log(value);
+              // => 2
+            },
           },
           {
             label: 'Value C',
@@ -49,6 +57,7 @@ const FilterComponent = (props: Props) => {
               checked: false,
               onCheck: (value, status) => {
                 console.log(value, status);
+                // => 3, true
               },
             },
           },
@@ -59,6 +68,7 @@ const FilterComponent = (props: Props) => {
               checked: true,
               onCheck: (value, status) => {
                 console.log(value, status);
+                // => 4, false
               },
             },
           },
