@@ -12,7 +12,7 @@ import styled, { css, keyframes } from 'styled-components';
 import { Keyframes } from 'styled-components/dist/types';
 
 type TransitionProps = {
-  status: boolean;
+  condition: boolean;
   duration?: number; // ms
   style?: CSSProperties;
   animations?: {
@@ -39,7 +39,7 @@ const Transition = (
   let outTimer = useRef<NodeJS.Timeout | null>(null);
   let inTimer = useRef<NodeJS.Timeout | null>(null);
   let fallbackOutTimer = useRef<NodeJS.Timeout | null>(null);
-  const { status, duration = 200 } = props;
+  const { condition, duration = 200 } = props;
   const innerStateRef = useRef<InnerState>('fallback');
   const [innerState, setInnerState] = useState<InnerState>('fallback');
 
@@ -58,7 +58,7 @@ const Transition = (
     if (fallbackOutTimer.current) {
       clearTimeout(fallbackOutTimer.current);
     }
-    if (status) {
+    if (condition) {
       if (innerStateRef.current === 'fallback' && props.fallback) {
         setInnerStates('fallbackOutTran');
         fallbackOutTimer.current = setTimeout(() => {
@@ -94,12 +94,12 @@ const Transition = (
         clearTimeout(fallbackOutTimer.current);
       }
     };
-  }, [duration, props.children, props.fallback, status]);
+  }, [duration, props.children, props.fallback, condition]);
 
   const isFallback =
     innerState === 'fallback' || innerState === 'fallbackOutTran';
 
-  const computedStatus = isFallback ? !status : status;
+  const computedStatus = isFallback ? !condition : condition;
 
   if (props.disableAnimation)
     return (
@@ -107,16 +107,16 @@ const Transition = (
         id={props.id}
         ref={ref}
         key="original"
-        status={computedStatus}
-        duration={duration}
         style={props.style}
-        animations={props.animations}
         className={props.className}
         onClick={props.onClick}
-        disableAnimation={props.disableAnimation}
-        useVerticalScroll={props.useVerticalScroll}
+        $animations={props.animations}
+        $condition={computedStatus}
+        $duration={duration}
+        $disableAnimation={props.disableAnimation}
+        $useVerticalScroll={props.useVerticalScroll}
       >
-        {!status ? props.fallback : props.children}
+        {!condition ? props.fallback : props.children}
       </Style>
     );
 
@@ -127,38 +127,49 @@ const Transition = (
       id={props.id}
       ref={ref}
       key="original"
-      status={computedStatus}
-      duration={duration}
       style={props.style}
-      animations={props.animations}
       className={props.className}
       onClick={props.onClick}
-      disableAnimation={props.disableAnimation}
-      useVerticalScroll={props.useVerticalScroll}
+      $animations={props.animations}
+      $condition={computedStatus}
+      $duration={duration}
+      $disableAnimation={props.disableAnimation}
+      $useVerticalScroll={props.useVerticalScroll}
     >
       {isFallback ? props.fallback : props.children}
     </Style>
   );
 };
 
-const Style = styled.div<TransitionProps>`
-  ${({ useVerticalScroll: useScroll }) =>
-    useScroll &&
+type TransitionStyleProps = {
+  $duration: number;
+  $useVerticalScroll?: boolean;
+  $disableAnimation?: boolean;
+  $condition?: boolean;
+  $animations?: {
+    in: Keyframes;
+    out: Keyframes;
+  };
+};
+
+const Style = styled.div<TransitionStyleProps>`
+  ${({ $useVerticalScroll }) =>
+    $useVerticalScroll &&
     css`
       display: flex;
       flex-direction: column;
       overflow: auto;
       flex: 1;
     `}
-  ${({ disableAnimation, status, animations, duration }) => {
-    const inAnimation = animations?.in || animation.slideIn;
-    const outAnimation = animations?.out || animation.slideOut;
+  ${({ $disableAnimation, $condition, $animations, $duration }) => {
+    const inAnimation = $animations?.in || animation.slideIn;
+    const outAnimation = $animations?.out || animation.slideOut;
     return (
-      !disableAnimation &&
+      !$disableAnimation &&
       css`
-        animation-name: ${status ? inAnimation : outAnimation};
+        animation-name: ${$condition ? inAnimation : outAnimation};
         animation-timing-function: ease-out;
-        animation-duration: ${duration ? `${duration}ms` : '200ms'};
+        animation-duration: ${$duration ? `${$duration}ms` : '200ms'};
         animation-fill-mode: both;
       `
     );

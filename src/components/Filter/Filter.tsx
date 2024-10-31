@@ -30,7 +30,7 @@ const FilterComponent = (props: Props) => {
       </Style>
       {/* Dropdown sample 입니다 */}
       <Dropdown
-        status={dropdownOpen}
+        open={dropdownOpen}
         close={() => setDropdownOpen(false)}
         anchorRef={ref}
         options={[

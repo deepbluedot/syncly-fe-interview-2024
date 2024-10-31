@@ -6,7 +6,7 @@ import Portal from './Portal';
 type Props = {
   close?: (e: MouseEvent) => void;
   onBgRightClick?: (e: MouseEvent) => void;
-  status: boolean;
+  condition: boolean;
   children: ReactNode;
   style?: CSSProperties;
   bgStyle?: CSSProperties;
@@ -15,7 +15,7 @@ type Props = {
 const DropdownPortal = (props: Props) => {
   return (
     <Portal id="dropdown-layer">
-      {props.status && (
+      {props.condition && (
         <DropdownBackground
           onClick={(e) => {
             e.stopPropagation();
@@ -30,7 +30,7 @@ const DropdownPortal = (props: Props) => {
         />
       )}
       <Transition
-        status={props.status}
+        condition={props.condition}
         style={{
           zIndex: 5000,
           position: 'fixed',
