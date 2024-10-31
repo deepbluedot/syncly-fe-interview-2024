@@ -30,6 +30,9 @@ const FilterComponent = (props: Props) => {
       </Style>
       {/* Dropdown sample 입니다 */}
       <Dropdown
+        status={dropdownOpen}
+        close={() => setDropdownOpen(false)}
+        anchorRef={ref}
         options={[
           {
             label: 'Filter A',
@@ -60,9 +63,6 @@ const FilterComponent = (props: Props) => {
             },
           },
         ]}
-        status={dropdownOpen}
-        close={() => setDropdownOpen(false)}
-        anchorRef={ref}
       />
     </>
   );
