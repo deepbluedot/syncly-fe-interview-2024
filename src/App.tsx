@@ -54,7 +54,9 @@ function App() {
   return (
     <AppStyle>
       <h1>Feedback List</h1>
-      <div>Dropdown Anchor Sample</div>
+      <AnchorStyle ref={ref} onClick={() => setDropdownOpen(true)}>
+        Dropdown Anchor Sample
+      </AnchorStyle>
       <Dropdown
         open={dropdownOpen}
         close={() => setDropdownOpen(false)}
@@ -64,7 +66,7 @@ function App() {
             label: 'Filter A',
             value: 1,
             onClick(value) {
-              console.log(value);
+              alert(`click ${value}`);
               // => 1
             },
           },
@@ -72,7 +74,7 @@ function App() {
             label: 'Filter B',
             value: 2,
             onClick(value) {
-              console.log(value);
+              alert(`click ${value}`);
               // => 2
             },
           },
@@ -82,7 +84,7 @@ function App() {
             enableCheck: {
               checked: false,
               onCheck: (value, status) => {
-                console.log(value, status);
+                alert(`check ${value} ${status}`);
                 // => 3, true
               },
             },
@@ -93,7 +95,7 @@ function App() {
             enableCheck: {
               checked: true,
               onCheck: (value, status) => {
-                console.log(value, status);
+                alert(`check ${value} ${status}`);
                 // => 4, false
               },
             },
@@ -110,6 +112,14 @@ const AppStyle = styled.div`
   flex-direction: column;
   padding: 24px;
   gap: 24px;
+`;
+
+const AnchorStyle = styled.div`
+  background-color: var(--primary-100);
+  color: var(--gray-100);
+  width: fit-content;
+  padding: 8px 16px;
+  cursor: pointer;
 `;
 
 export default App;
