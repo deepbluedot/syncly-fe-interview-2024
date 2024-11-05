@@ -1,58 +1,106 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
+import Dropdown from './components/Dropdown/Dropdown';
+import { OptionItem } from './components/Dropdown/DropdownItem';
 import FeedbackList from './components/Feedback/FeedbackList';
-import FilterComponent from './components/Filter/Filter';
-import { FilterOption, FilterValue } from './types';
+import { SENTIMENT, SentimentDic, SOURCE, SourceDic } from './types/constants';
 
 //
 //
 // 제공되는 노션 문서와 피그마를 참조하여
-// FilterComponent를 구성해주세요
+// Filter Component를 구성해주세요
 //
 // [요구사항]
-// - /types/index.ts FilterOption, FilterValue type 정의 (현재 unknown으로 정의됨)
-//   - 추가적으로 필요한 타입 정의는 자유롭게 작성하시면 됩니다.
-//
-// - /components/Filter/Filter.tsx 에서 필터 컴포넌트 작성
-//   - /types/constants.ts 파일을 참조하여 필터 옵션 리스트 구성 및 Operator selector 구성
-//
-// - /utils/index.ts 에서 currentFilterValues를 이용해 queryString을 만들어내는
-//    buildQueryFromFilter 유틸리티 함수 작성
-//
-// - (Optional) currentFilterValues를 localStorage를 사용하여 브라우저 refresh를 해도 유지되도록 작성하기
+// - Filter Component 를 작성하여 현재 선택된 필터에 따라 query string을 업데이트하기
+// - (Optional) localStorage를 사용하여 브라우저 refresh를 해도 선택된 필터 상태가 유지되도록 작성하기
 // - (Optional) Dropdown 컴포넌트를 검색 가능한 형태로 확장하기
 //
 // [참고사항]
 // - css variables는 /src/styles/index.css 를 참고해주세요 (Figma에서 mode_swap/gray/200 === var(--gray-200))
 // - 필요한 icon들은 /src/assets 경로에 정의되어 있습니다.
+// - Dropdown, Checkbox, OptionItem 등의 공용 컴포넌트는 제공됩니다.
 //
 //
 
-const tagList = [
-  { label: 'Feature', id: '2375533bfc60' },
-  { label: 'Bug', id: '8ca853efa283' },
-  { label: 'Hotfix', id: '6a6013f92f5fc' },
-  { label: 'Design', id: '3c3124f64704' },
-  { label: 'Business', id: '3c3124f6470c' },
+const tagLis: OptionItem[] = [
+  { label: 'Feature', value: '2375533bfc60' },
+  { label: 'Bug', value: '8ca853efa283' },
+  { label: 'Hotfix', value: '6a6013f92f5fc' },
+  { label: 'Design', value: '3c3124f64704' },
+  { label: 'Business', value: '3c3124f6470c' },
 ];
 
+const sentimentList: OptionItem[] = Object.keys(SentimentDic).map((key) => {
+  const sentiment = Number(key) as SENTIMENT;
+  return {
+    label: SentimentDic[sentiment],
+    value: sentiment,
+  };
+});
+
+const sourceList: OptionItem[] = Object.keys(SourceDic).map((key) => {
+  const source = Number(key) as SOURCE;
+  return {
+    label: SourceDic[source],
+    value: source,
+  };
+});
+
 function App() {
-  const filterOptions: FilterOption[] = [];
-  const [currentFilterValues, setCurrentFilterValues] = useState<FilterValue[]>(
-    [],
-  );
+  const ref = useRef<HTMLDivElement>(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [query, setQuery] = useState('');
 
   return (
     <AppStyle>
       <h1>Feedback List</h1>
-      <FilterComponent
-        filterOptions={filterOptions}
-        currentFilterValues={currentFilterValues}
-        onFilterChange={(filter) => {
-          setCurrentFilterValues(filter);
-        }}
+      <div>Dropdown Anchor Sample</div>
+      <Dropdown
+        open={dropdownOpen}
+        close={() => setDropdownOpen(false)}
+        anchorRef={ref}
+        options={[
+          {
+            label: 'Filter A',
+            value: 1,
+            onClick(value) {
+              console.log(value);
+              // => 1
+            },
+          },
+          {
+            label: 'Filter B',
+            value: 2,
+            onClick(value) {
+              console.log(value);
+              // => 2
+            },
+          },
+          {
+            label: 'Value C',
+            value: 3,
+            enableCheck: {
+              checked: false,
+              onCheck: (value, status) => {
+                console.log(value, status);
+                // => 3, true
+              },
+            },
+          },
+          {
+            label: 'Value D',
+            value: 4,
+            enableCheck: {
+              checked: true,
+              onCheck: (value, status) => {
+                console.log(value, status);
+                // => 4, false
+              },
+            },
+          },
+        ]}
       />
-      <FeedbackList currentFilterValues={currentFilterValues} />
+      <FeedbackList query={query} />
     </AppStyle>
   );
 }

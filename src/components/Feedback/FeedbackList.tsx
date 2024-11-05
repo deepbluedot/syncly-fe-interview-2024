@@ -1,13 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import service from '../../service';
-import { Feedback, FilterValue } from '../../types';
-import utils from '../../utils';
+import { Feedback } from '../../types';
 import List from '../List/List';
 import FeedbackItem from './FeedbackItem';
 
 type Props = {
-  currentFilterValues: FilterValue[];
+  query: string;
 };
 
 //
@@ -24,11 +23,10 @@ const FeedbackList = (props: Props) => {
 
   const fetchFeedbackList = useCallback(async () => {
     setLoading(true);
-    const query = utils.buildQueryFromFilter(props.currentFilterValues);
-    const res = await service.getFeedbackList(query);
+    const res = await service.getFeedbackList(props.query);
     setLoading(false);
     setFeedbackList(res);
-  }, [props.currentFilterValues]);
+  }, [props.query]);
 
   useEffect(() => {
     fetchFeedbackList();
