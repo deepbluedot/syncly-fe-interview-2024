@@ -1,25 +1,4 @@
-import { FILTER_OPERATOR, SENTIMENT, SOURCE } from './constants';
-
-// FilterOption은 필드의 키 값 ( ex> source, sentiment, tag...)과
-// 필드가 가질 수 있는 값의 리스트 ( ex> SOURCE.MANUAL, SOURCE.SLACK...)
-// 그리고 필드의 기타 속성들을 정의하는 타입입니다.
-export type FilterOption = {
-  fieldKey: string;
-  fieldName: string;
-  fieldOptions: FieldOption[];
-};
-
-export type FieldOption = {
-  label: string;
-  value: StringNumberValue;
-};
-
-// FilterValue는 현재 선택된 필터 값들입니다. 어떤 필드의 어떤 값들과 operator가 선택되었는지 정의합니다.
-export type FilterValue = {
-  fieldKey: string;
-  values: StringNumberValue[];
-  operator: FILTER_OPERATOR;
-};
+import { SENTIMENT, SOURCE } from './constants';
 
 export type Feedback = {
   id: string;
