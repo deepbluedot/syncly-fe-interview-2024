@@ -19,7 +19,7 @@ import { SENTIMENT, SentimentDic, SOURCE, SourceDic } from './types/constants';
 // - css variables는 /src/styles/index.css 를 참고해주세요 (Figma에서 mode_swap/gray/200 === var(--gray-200))
 // - 필요한 icon들은 /src/assets 경로에 정의되어 있습니다.
 // - Dropdown, Checkbox, OptionItem 등의 공용 컴포넌트는 제공됩니다.
-//
+// - 제공되는 컴포넌트 외에 본인이 선호하는 라이브러리가 있다면 사용해도 무방합니다.
 //
 
 const tagLis: OptionItem[] = [
