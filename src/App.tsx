@@ -22,7 +22,7 @@ import { SENTIMENT, SentimentDic, SOURCE, SourceDic } from './types/constants';
 // - 제공되는 컴포넌트 외에 본인이 선호하는 라이브러리가 있다면 사용해도 무방합니다.
 //
 
-const tagLis: OptionItem[] = [
+const tagList: OptionItem[] = [
   { label: 'Feature', value: '2375533bfc60' },
   { label: 'Bug', value: '8ca853efa283' },
   { label: 'Hotfix', value: '6a6013f92f5fc' },
